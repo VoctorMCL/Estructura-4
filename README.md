@@ -21,6 +21,7 @@ El código fuente principal con toda la lógica del programa se encuentra en la 
 
 ## 🌳 Arquitectura del Sistema
 El torneo se estructura bajo la siguiente jerarquía de nodos:
+
 ![Diagrama de Árbol](img/Imagen14.png)
 
 ---
@@ -30,10 +31,12 @@ A continuación se muestran las pruebas de ejecución del sistema, demostrando e
 
 ### Imágenes 1 y 2: Registro de equipos
 ![Registro](img/Imagen1.png)
+
 ![Registro2](img/Imagen2.png)
 
 ### Imágenes 3 y 4: Asignación de equipos a semifinales
 ![Asignacion](img/Imagen3.png)
+
 ![Asignacion2](img/Imagen4.png)
 
 ### Imagen 5: Visualización de semifinales
@@ -41,8 +44,11 @@ A continuación se muestran las pruebas de ejecución del sistema, demostrando e
 
 ### Imágenes 6, 7, 8 y 9: Registro de ganador de semifinal y formación de la final
 ![Ganadores](img/Imagen6.png)
+
 ![Ganadores2](img/Imagen7.png)
+
 ![Ganadores3](img/Imagen8.png)
+
 ![Ganadores4](img/Imagen9.png)
 
 ### Imagen 10: Registro del campeón
@@ -53,6 +59,7 @@ A continuación se muestran las pruebas de ejecución del sistema, demostrando e
 
 ### Imágenes 12 y 13: Validaciones
 ![Validacion](img/Imagen12.png)
+
 ![Validacion2](img/Imagen13.png)
 
 ---
