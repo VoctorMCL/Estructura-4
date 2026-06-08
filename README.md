@@ -19,24 +19,41 @@ El código fuente principal con toda la lógica del programa se encuentra en la 
 
 ---
 
-## 💻 Capturas de la Implementación (Consola)
+## 🌳 Arquitectura del Sistema
+El torneo se estructura bajo la siguiente jerarquía de nodos:
+![Diagrama de Árbol](img/Imagen14.png)
 
+---
+
+## 💻 Capturas de la Implementación (Consola)
 A continuación se muestran las pruebas de ejecución del sistema, demostrando el flujo completo del torneo:
 
-### Imagen 1: Registro de equipos
-![Registro](img/captura1.png)
+### Imágenes 1 y 2: Registro de equipos
+![Registro](img/Imagen1.png)
+![Registro2](img/Imagen2.png)
 
-### Imagen 2: Asignación de equipos a semifinales
-![Asignacion](img/captura2.png)
+### Imágenes 3 y 4: Asignación de equipos a semifinales
+![Asignacion](img/Imagen3.png)
+![Asignacion2](img/Imagen4.png)
 
-### Imagen 3: Ver semifinales
-![Semifinales](img/captura3.png)
+### Imagen 5: Visualización de semifinales
+![Semifinales](img/Imagen5.png)
 
-### Imagen 4: Registro de ganadores de semifinal y formación de la final
-![Ganadores](img/captura4.png)
+### Imágenes 6, 7, 8 y 9: Registro de ganador de semifinal y formación de la final
+![Ganadores](img/Imagen6.png)
+![Ganadores2](img/Imagen7.png)
+![Ganadores3](img/Imagen8.png)
+![Ganadores4](img/Imagen9.png)
 
-### Imagen 5: Registro del campeón y cuadro del torneo
-![Campeon](img/captura5.png)
+### Imagen 10: Registro del campeón
+![Campeon](img/Imagen10.png)
+
+### Imagen 11: Cuadro del torneo
+![Cuadro](img/Imagen11.png)
+
+### Imágenes 12 y 13: Validaciones
+![Validacion](img/Imagen12.png)
+![Validacion2](img/Imagen13.png)
 
 ---
 
