@@ -6,6 +6,7 @@ public class Estructura4 {
     static class Nodo {
         String nombre;
         String ganador;
+        Equipo equipo;
         Nodo izquierdo;
         Nodo derecho;
     }
@@ -103,10 +104,7 @@ public class Estructura4 {
             return;
         }
         
-        if ((semifinal1.izquierdo != null && semifinal1.izquierdo.nombre.equalsIgnoreCase(encontrado.nombre)) ||
-            (semifinal1.derecho != null && semifinal1.derecho.nombre.equalsIgnoreCase(encontrado.nombre)) ||
-            (semifinal2.izquierdo != null && semifinal2.izquierdo.nombre.equalsIgnoreCase(encontrado.nombre)) ||
-            (semifinal2.derecho != null && semifinal2.derecho.nombre.equalsIgnoreCase(encontrado.nombre))) {
+        if ((semifinal1.izquierdo != null && semifinal1.izquierdo.equipo.codigo.equalsIgnoreCase(encontrado.codigo)) || (semifinal1.derecho != null && semifinal1.derecho.equipo.codigo.equalsIgnoreCase(encontrado.codigo)) || (semifinal2.izquierdo != null && semifinal2.izquierdo.equipo.codigo.equalsIgnoreCase(encontrado.codigo)) || (semifinal2.derecho != null && semifinal2.derecho.equipo.codigo.equalsIgnoreCase(encontrado.codigo))) {
             System.out.println("Este equipo ya esta asignado a una semifinal");
             return;
         }
@@ -137,10 +135,12 @@ public class Estructura4 {
         if (semi.izquierdo == null) {
             semi.izquierdo = new Nodo();
             semi.izquierdo.nombre = encontrado.nombre;
+            semi.izquierdo.equipo = encontrado;
             System.out.println(encontrado.nombre + " asignado a " + semi.nombre + " (esperando rival)");
         } else if (semi.derecho == null) {
             semi.derecho = new Nodo();
             semi.derecho.nombre = encontrado.nombre;
+            semi.derecho.equipo = encontrado;
             System.out.println(encontrado.nombre + " asignado a " + semi.nombre);
             System.out.println(semi.nombre + " lista: " + semi.izquierdo.nombre + " vs " + semi.derecho.nombre);
         } else {
