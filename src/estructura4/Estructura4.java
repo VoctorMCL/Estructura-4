@@ -3,15 +3,14 @@ import java.util.*;
 
 public class Estructura4 {
 
-    static class Nodo{
+    static class Nodo {
         String nombre;
-        Equipo equipo1;
-        Equipo equipo2;
-        Equipo ganador;
+        String ganador;
         Nodo izquierdo;
         Nodo derecho;
     }
-    static class Equipo{
+
+    static class Equipo {
         String codigo;
         String nombre;
     }
@@ -103,7 +102,11 @@ public class Estructura4 {
             System.out.println("Codigo no encontrado");
             return;
         }
-        if (encontrado == semifinal1.equipo1 || encontrado == semifinal1.equipo2 || encontrado == semifinal2.equipo1 || encontrado == semifinal2.equipo2) {
+        
+        if ((semifinal1.izquierdo != null && semifinal1.izquierdo.nombre.equalsIgnoreCase(encontrado.nombre)) ||
+            (semifinal1.derecho != null && semifinal1.derecho.nombre.equalsIgnoreCase(encontrado.nombre)) ||
+            (semifinal2.izquierdo != null && semifinal2.izquierdo.nombre.equalsIgnoreCase(encontrado.nombre)) ||
+            (semifinal2.derecho != null && semifinal2.derecho.nombre.equalsIgnoreCase(encontrado.nombre))) {
             System.out.println("Este equipo ya esta asignado a una semifinal");
             return;
         }
@@ -131,70 +134,76 @@ public class Estructura4 {
             semi = semifinal2;
         }
 
-        if (semi.equipo1 == null) {
-            semi.equipo1 = encontrado;
+        if (semi.izquierdo == null) {
+            semi.izquierdo = new Nodo();
+            semi.izquierdo.nombre = encontrado.nombre;
             System.out.println(encontrado.nombre + " asignado a " + semi.nombre + " (esperando rival)");
-        } else if (semi.equipo2 == null) {
-            semi.equipo2 = encontrado;
+        } else if (semi.derecho == null) {
+            semi.derecho = new Nodo();
+            semi.derecho.nombre = encontrado.nombre;
             System.out.println(encontrado.nombre + " asignado a " + semi.nombre);
-            System.out.println(semi.nombre + " lista: " + semi.equipo1.nombre + " vs " + semi.equipo2.nombre);
+            System.out.println(semi.nombre + " lista: " + semi.izquierdo.nombre + " vs " + semi.derecho.nombre);
         } else {
             System.out.println(semi.nombre + " ya tiene 2 equipos asignados");
         }
 
-        if (semifinal1.equipo1 != null && semifinal1.equipo2 != null && semifinal2.equipo1 != null && semifinal2.equipo2 != null) {
+        if (semifinal1.izquierdo != null && semifinal1.derecho != null && semifinal2.izquierdo != null && semifinal2.derecho != null) {
             System.out.println("\nTodas las semifinales ya estan formadas");
         }
     }
 
     static void verSemifinales() {
-        if (semifinal1.equipo1 == null && semifinal2.equipo1 == null) {
+        if (semifinal1.izquierdo == null && semifinal2.izquierdo == null) {
             System.out.println("No hay equipos asignados todavia");
             return;
         }
         System.out.println("\n=== Semifinales ===");
 
         String e1sf1;
-        if (semifinal1.equipo1 != null) {
-            e1sf1 = semifinal1.equipo1.nombre;
+        if (semifinal1.izquierdo != null) {
+            e1sf1 = semifinal1.izquierdo.nombre;
         } else {
             e1sf1 = "?";
         }
+
         String e2sf1;
-        if (semifinal1.equipo2 != null) {
-            e2sf1 = semifinal1.equipo2.nombre;
+        if (semifinal1.derecho != null) {
+            e2sf1 = semifinal1.derecho.nombre;
         } else {
             e2sf1 = "?";
         }
+
         System.out.println("Semifinal 1: " + e1sf1 + " vs " + e2sf1);
         if (semifinal1.ganador != null) {
-            System.out.println("  Ganador: " + semifinal1.ganador.nombre);
+            System.out.println("Ganador: " + semifinal1.ganador);
         } else {
-            System.out.println("  Ganador: Pendiente");
+            System.out.println("Ganador: Pendiente");
         }
 
         String e1sf2;
-        if (semifinal2.equipo1 != null) {
-            e1sf2 = semifinal2.equipo1.nombre;
+        if (semifinal2.izquierdo != null) {
+            e1sf2 = semifinal2.izquierdo.nombre;
         } else {
             e1sf2 = "?";
         }
+
         String e2sf2;
-        if (semifinal2.equipo2 != null) {
-            e2sf2 = semifinal2.equipo2.nombre;
+        if (semifinal2.derecho != null) {
+            e2sf2 = semifinal2.derecho.nombre;
         } else {
             e2sf2 = "?";
         }
+
         System.out.println("Semifinal 2: " + e1sf2 + " vs " + e2sf2);
         if (semifinal2.ganador != null) {
-            System.out.println("  Ganador: " + semifinal2.ganador.nombre);
+            System.out.println("Ganador: " + semifinal2.ganador);
         } else {
-            System.out.println("  Ganador: Pendiente");
+            System.out.println("Ganador: Pendiente");
         }
     }
 
     static void registrarGanadorSemifinal(Scanner sc) {
-        if (semifinal1.equipo1 == null || semifinal1.equipo2 == null || semifinal2.equipo1 == null || semifinal2.equipo2 == null) {
+        if (semifinal1.izquierdo == null || semifinal1.derecho == null || semifinal2.izquierdo == null || semifinal2.derecho == null) {
             System.out.println("Las semifinales aun no estan completas");
             return;
         }
@@ -223,8 +232,8 @@ public class Estructura4 {
         }
 
         System.out.println("Ganador de " + semi.nombre + ":");
-        System.out.println("1. " + semi.equipo1.nombre);
-        System.out.println("2. " + semi.equipo2.nombre);
+        System.out.println("1. " + semi.izquierdo.nombre);
+        System.out.println("2. " + semi.derecho.nombre);
         System.out.print("Opcion: ");
         int op;
         try {
@@ -237,31 +246,29 @@ public class Estructura4 {
         }
 
         if (op == 1) {
-            semi.ganador = semi.equipo1;
+            semi.ganador = semi.izquierdo.nombre;
         } else if (op == 2) {
-            semi.ganador = semi.equipo2;
+            semi.ganador = semi.derecho.nombre;
         } else {
             System.out.println("Opcion invalida");
             return;
         }
 
-        System.out.println(semi.ganador.nombre + " registrado como ganador de " + semi.nombre);
+        System.out.println(semi.ganador + " registrado como ganador de " + semi.nombre);
 
         if (semifinal1.ganador != null && semifinal2.ganador != null) {
-            finalT.equipo1 = semifinal1.ganador;
-            finalT.equipo2 = semifinal2.ganador;
-            System.out.println("\nFinal formada: " + finalT.equipo1.nombre + " vs " + finalT.equipo2.nombre);
+            System.out.println("\nFinal formada: " + semifinal1.ganador + " vs " + semifinal2.ganador);
         }
     }
 
     static void registrarGanadorFinal(Scanner sc) {
-        if (finalT.equipo1 == null) {
+        if (semifinal1.ganador == null || semifinal2.ganador == null) {
             System.out.println("La final aun no esta formada");
             return;
         }
         System.out.println("Ganador de la Final:");
-        System.out.println("1. " + finalT.equipo1.nombre);
-        System.out.println("2. " + finalT.equipo2.nombre);
+        System.out.println("1. " + semifinal1.ganador);
+        System.out.println("2. " + semifinal2.ganador);
         System.out.print("Opcion: ");
         int op;
         try {
@@ -274,14 +281,14 @@ public class Estructura4 {
         }
 
         if (op == 1) {
-            finalT.ganador = finalT.equipo1;
+            finalT.ganador = semifinal1.ganador;
         } else if (op == 2) {
-            finalT.ganador = finalT.equipo2;
+            finalT.ganador = semifinal2.ganador;
         } else {
             System.out.println("Opcion invalida");
             return;
         }
-        System.out.println(finalT.ganador.nombre + " es el campeon!");
+        System.out.println(finalT.ganador + " es el campeon!");
     }
 
     static void verCuadro() {
@@ -293,17 +300,18 @@ public class Estructura4 {
         System.out.println("   [" + s1.nombre + "]  [" + s2.nombre + "]");
         System.out.println("================================");
 
-        if (s1.equipo1 != null) {
+        if (s1.izquierdo != null) {
             String rival1;
-            if (s1.equipo2 != null) {
-                rival1 = s1.equipo2.nombre;
+            if (s1.derecho != null) {
+                rival1 = s1.derecho.nombre;
             } else {
                 rival1 = "?";
             }
-            System.out.println("Semifinal 1: " + s1.equipo1.nombre + " vs " + rival1);
+            System.out.println("Semifinal 1: " + s1.izquierdo.nombre + " vs " + rival1);
+            
             String txtG1;
             if (s1.ganador != null) {
-                txtG1 = s1.ganador.nombre;
+                txtG1 = s1.ganador;
             } else {
                 txtG1 = "Pendiente";
             }
@@ -312,32 +320,34 @@ public class Estructura4 {
             System.out.println("Semifinal 1: (sin equipos aun)");
         }
 
-        if (s2.equipo1 != null) {
+        if (s2.izquierdo != null) {
             String rival2;
-            if (s2.equipo2 != null) {
-                rival2 = s2.equipo2.nombre;
+            if (s2.derecho != null) {
+                rival2 = s2.derecho.nombre;
             } else {
                 rival2 = "?";
             }
-            System.out.println("Semifinal 2: " + s2.equipo1.nombre + " vs " + rival2);
+            System.out.println("Semifinal 2: " + s2.izquierdo.nombre + " vs " + rival2);
+            
             String txtG2;
             if (s2.ganador != null) {
-                txtG2 = s2.ganador.nombre;
+                txtG2 = s2.ganador;
             } else {
                 txtG2 = "Pendiente";
             }
-            System.out.println("Ganador : " + txtG2);
+            System.out.println("Ganador: " + txtG2);
         } else {
             System.out.println("Semifinal 2: (sin equipos aun)");
         }
 
         System.out.println();
 
-        if (finalT.equipo1 != null) {
-            System.out.println("Final: " + finalT.equipo1.nombre + " vs " + finalT.equipo2.nombre);
+        if (s1.ganador != null && s2.ganador != null) {
+            System.out.println("Final: " + s1.ganador + " vs " + s2.ganador);
+            
             String txtCampeon;
             if (finalT.ganador != null) {
-                txtCampeon =finalT.ganador.nombre;
+                txtCampeon = finalT.ganador;
             } else {
                 txtCampeon = "Pendiente";
             }
