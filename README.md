@@ -9,10 +9,10 @@ El código fuente principal con toda la lógica del programa se encuentra en la 
 ### 🛠️ Detalles de la Implementación
 
 * **Estructura de Datos:** Implementación de un árbol binario manual mediante la clase interna `Nodo`, donde la raíz representa la final y sus hijos izquierdo y derecho representan las dos semifinales.
-* **Modelado de Datos:** Creación de las clases internas `Nodo` y `Equipo` para encapsular los atributos de cada partido (equipos participantes y ganador) y de cada equipo (código y nombre).
+* **Modelado de Datos:** Creación de las clases internas Nodo y Equipo. Se diseñaron de forma que cada nodo del árbol encapsula directamente la referencia al objeto Equipo completo.
 * **Registro de Equipos:** Uso de un `ArrayList` para almacenar los equipos disponibles antes de ser asignados al árbol del torneo.
 * **Asignación Manual:** El usuario decide explícitamente en qué semifinal coloca cada equipo, lo que da control total sobre los enfrentamientos.
-* **Gestión de Errores:** Control de flujo preventivo con validaciones en cada opción para evitar estados inválidos, como registrar ganadores antes de formar los partidos o asignar un equipo ya existente.
+* **Gestión de Errores:** Control de flujo preventivo con validaciones en cada opción para evitar estados inválidos, como registrar ganadores antes de formar los partidos o asignar un equipo ya existente en las fases previas.
 * **Interfaz de Consola:** Menú interactivo continuo diseñado para seguir el flujo natural del torneo: registrar, asignar, jugar semifinales, jugar final y ver el cuadro.
 
 > **Nota para el profesor:** He subido el proyecto completo a este repositorio de GitHub para garantizar la visualización del código con total claridad y complementar la documentación técnica entregada.
